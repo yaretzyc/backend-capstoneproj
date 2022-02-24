@@ -22,7 +22,7 @@ public class BookService {
         System.out.println("Service calling create book method ==> ");
         return bookRepository.save(bookObj);
     }
-    
+
 //get book list
     public List<Book> getBookList(){
         System.out.println("Service calling getBookList --> ");
