@@ -40,7 +40,26 @@
 ## DEPENDENCIES POM.XML
 
 ## ENDPOINTS
-
+   | Request Type | Enpoint | Functionality |
+|--|--|--|
+|BOOK TABLE|
+| 1. POST | /book/ | create a new book |
+|2. GET | /book/books/ | get ALL books |
+|3. GET | /book/{bookId}/ | get one book |
+|4. PUT | /book/{bookId}/ | update one book |
+|5. DELETE | /book/{bookId}/ | delete one book |
+|POSTS TABLE|
+|6. POST | /post/ | create one post |
+|7. GET | /post/posts/ | get all posts |
+|8. GET | /post/{postId}/ | get one post |
+|9. PUT | /post/{postId}/ | update one post |
+|10. DELETE | /post/{postId}/ | delete a post |
+|QUOTES TABLE|
+|11. POST |/quote/ | create a quote |
+|12. GET | /quote/quotes/ | get all quotes |
+|13. GET | /quote/{quoteId}/ | get one quote |
+|14. DELETE | /quote/{quoteId}/ | delete a post |
+|15. PUT | /quote/{quoteId}/ | update one post|
 ## TECHNOLOGIES 
 
 ## INSTALLATION
