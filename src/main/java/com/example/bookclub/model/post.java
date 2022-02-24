@@ -19,6 +19,9 @@ public class post {
     private String name;
 
     @Column
+    private String title;
+
+    @Column
     private String body;
 
     @Column
@@ -35,9 +38,10 @@ public class post {
     }
 
 
-    public post(Long id, String name, String body, Integer page, LocalDate date, LocalDateTime dateTime) {
+    public post(Long id, String name, String title, String body, Integer page, LocalDate date, LocalDateTime dateTime) {
         Id = id;
         this.name = name;
+        this.title = title;
         this.body = body;
         this.page = page;
         this.date = date;
@@ -90,5 +94,13 @@ public class post {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
