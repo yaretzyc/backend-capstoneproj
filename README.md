@@ -1,6 +1,6 @@
 # Backend Capstone Project for Book Club application
 
-<p>I enjoy reading 📖 and discussing with others book related topics. With the pandemic I though maybe this application can be for other introverts as well who also enjoy reading with a cup of coffee ☕ and posting book quotes and reviews. This repo contains the backend Java Springboot backend API that communicates with the <a href="https://github.com/yaretzyc/frontend-capstoneproject">Frontend Angular application</a>.</p>
+<p>I enjoy reading 📖 and discussing with others book related topics. With the pandemic I though maybe this application can be for other introverts as well who also enjoy reading with a cup of coffee ☕ and posting book quotes and reviews. This repo contains the backend Java Springboot backend API that communicates with the <a href="https://github.com/yaretzyc/frontend-capstoneproject" target="_blank">Frontend Angular application</a>.</p>
 
 
 #### CONTENTS
