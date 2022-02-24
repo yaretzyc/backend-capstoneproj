@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "quotes")
-public class quote {
+public class Quote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class quote {
     private String quote;
 
 
-    public quote() {
+    public Quote() {
     }
 
-    public quote(Long id, String name, Integer page, Integer chapter, String quote) {
+    public Quote(Long id, String name, Integer page, Integer chapter, String quote) {
         this.id = id;
         this.name = name;
         this.page = page;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "books")
-public class book {
+public class Book {
 
     @Id
     @Column
@@ -36,10 +36,10 @@ public class book {
     private String other;
 
 
-    public book() {
+    public Book() {
     }
 
-    public book(Long id, String title, String author, String img, String summary, String link, String pages, String genre, String other) {
+    public Book(Long id, String title, String author, String img, String summary, String link, String pages, String genre, String other) {
         this.id = id;
         this.title = title;
         this.author = author;

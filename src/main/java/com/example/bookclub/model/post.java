@@ -4,11 +4,10 @@ package com.example.bookclub.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "posts")
-public class post {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +33,11 @@ public class post {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
 
-    public post() {
+    public Post() {
     }
 
 
-    public post(Long id, String name, String title, String body, Integer page, LocalDate date, LocalDateTime dateTime) {
+    public Post(Long id, String name, String title, String body, Integer page, LocalDate date, LocalDateTime dateTime) {
         Id = id;
         this.name = name;
         this.title = title;
