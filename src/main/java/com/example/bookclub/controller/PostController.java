@@ -16,10 +16,10 @@ public class PostController {
     public PostService postService;
 
     //get hello world
-    @GetMapping(path = "/hello-world/")
-    public String getHelloWorld(){
-        return "hello world";
-    }
+//    @GetMapping(path = "/hello-world/")
+//    public String getHelloWorld(){
+//        return "hello world";
+//    }
 
 
 
