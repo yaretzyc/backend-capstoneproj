@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path="/post")
+@RequestMapping(path="/api")
 public class PostController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class PostController {
 
 
     //CREATE
-    @PostMapping("")
+    @PostMapping("/post/")
     public Post createPost (@RequestBody Post postObj){
         return postService.createPost(postObj);
     }
@@ -35,14 +35,14 @@ public class PostController {
     }
 
     //GET ONE POST
-    @GetMapping("/{postId}/")
+    @GetMapping("/post/{postId}/")
     public Optional<Post> getOnePost(@PathVariable(value = "postId")Long postId){
         return postService.getOnePost(postId);
     }
 
 
     //UPDATE ONE post
-    @PutMapping("/{postId}/")
+    @PutMapping("/post/{postId}/")
     public Post updatePost(@PathVariable(value = "postId")Long postId,
                            @RequestBody Post postObj){
         return postService.updatePost(postId, postObj);
@@ -51,7 +51,7 @@ public class PostController {
 
 
     //delete one post
-    @DeleteMapping("/{postId}/")
+    @DeleteMapping("/post/{postId}/")
     public Optional<Post> deletePost(@PathVariable (value = "postId") Long postId) {
 
         return postService.deletePost(postId);

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path="/quote")
+@RequestMapping(path="/api")
 public class QuoteController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class QuoteController {
 
 
     //CREATE
-    @PostMapping("")
+    @PostMapping("/quote/")
     public Quote createQuote (@RequestBody Quote quoteObj){
         return quoteService.createQuote(quoteObj);
     }
@@ -36,14 +36,14 @@ public class QuoteController {
     }
 
     //GET ONE Quote
-    @GetMapping("/{quoteId}/")
+    @GetMapping("/quote/{quoteId}/")
     public Optional<Quote> getOneQuote(@PathVariable(value = "quoteId")Long quoteId){
         return quoteService.getOneQuote(quoteId);
     }
 
 
     //UPDATE ONE Quote
-    @PutMapping("/{quoteId}/")
+    @PutMapping("/quote/{quoteId}/")
     public Quote updateQuote(@PathVariable(value = "quoteId")Long quoteId,
                            @RequestBody Quote quoteObj){
         return quoteService.updateQuote(quoteId, quoteObj);
@@ -52,7 +52,7 @@ public class QuoteController {
 
 
     //delete one Quote
-    @DeleteMapping("/{quoteId}/")
+    @DeleteMapping("/quote/{quoteId}/")
     public Optional<Quote> deleteQuote(@PathVariable (value = "quoteId") Long quoteId) {
 
         return quoteService.deleteQuote(quoteId);

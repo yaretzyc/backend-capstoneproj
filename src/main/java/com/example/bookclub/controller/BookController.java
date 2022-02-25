@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path="/book")
+@RequestMapping(path="/api")
 public class BookController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class BookController {
 
     ////////////////////BOOKS \\\\\\\\\\\\\\\\\\\\\
 //CREATE
-    @PostMapping("")
+    @PostMapping("/book/")
     public Book createBook (@RequestBody Book bookObj){
         return bookService.createBook(bookObj);
     }
@@ -34,14 +34,14 @@ public class BookController {
     }
 
  //GET ONE BOOK
-    @GetMapping("/{bookId}/")
+    @GetMapping("/book/{bookId}/")
     public Optional<Book> getOneBook(@PathVariable(value = "bookId")Long bookId){
         return bookService.getOneBook(bookId);
     }
 
 
 //UPDATE ONE BOOK
-    @PutMapping("/{bookId}/")
+    @PutMapping("/book/{bookId}/")
     public Book updateBook(@PathVariable(value = "bookId")Long bookId,
                            @RequestBody Book bookObj){
         return bookService.updateBook(bookId, bookObj);
@@ -50,7 +50,7 @@ public class BookController {
 
 
 //delete one book
-    @DeleteMapping("/{bookId}/")
+    @DeleteMapping("/book/{bookId}/")
     public Optional<Book> deleteBook(@PathVariable (value = "bookId") Long bookId) {
 
         return bookService.deleteBook(bookId);
