@@ -1,6 +1,8 @@
 package com.example.bookclub.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,9 +35,25 @@ public class Post {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
 
+    @JsonIgnore//IN THE JSON WILL NOT SHOW CATEGORY ID AS A COLUMN
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
     public Post() {
     }
 
+    //adding getters setters and construcotr
+
+
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public Post(Long id, String name, String title, String body, Integer page, LocalDate date, LocalDateTime dateTime) {
         Id = id;

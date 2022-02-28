@@ -1,6 +1,10 @@
 package com.example.bookclub.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -17,7 +21,7 @@ public class Book {
     @Column
     private String author;
 
-    
+
     @Column
     private String img;
 
@@ -36,6 +40,17 @@ public class Book {
     @Column
     private String other;
 
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Post> postList;
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
 
     public Book() {
     }
