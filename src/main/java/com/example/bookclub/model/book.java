@@ -52,6 +52,21 @@ public class Book {
         this.postList = postList;
     }
 
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Quote> quoteList;
+
+    public List<Quote> getQuoteList() {
+        return quoteList;
+    }
+
+    public void setQuoteList(List<Quote> quoteList) {
+        this.quoteList = quoteList;
+    }
+
+
+
+
     public Book() {
     }
 

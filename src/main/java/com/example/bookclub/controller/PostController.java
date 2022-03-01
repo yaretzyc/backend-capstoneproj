@@ -20,7 +20,12 @@ public class PostController {
 //    public String getHelloWorld(){
 //        return "hello world";
 //    }
-
+//GET ALL POSTS
+    @GetMapping("/posts/")
+    public List<Post> allPosts(){
+        System.out.println("service calling allPosts");
+        return postService.allPosts();
+    }
 
 
 //    CREATE

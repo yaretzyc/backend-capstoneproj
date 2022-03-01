@@ -28,6 +28,13 @@ public class PostService {
         this.bookRepository = bookRepository;
     }
 
+    //ALL POSTS
+    public List<Post> allPosts(){
+        return postRepository.findAll();
+    }
+
+
+
 //    //create post
 //    public Post createPost(Post postObj){
 //        System.out.println("Service calling create post method ==> ");
