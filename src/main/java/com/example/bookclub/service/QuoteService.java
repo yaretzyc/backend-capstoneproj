@@ -1,5 +1,6 @@
 package com.example.bookclub.service;
 
+import com.example.bookclub.exceptions.InformationExistException;
 import com.example.bookclub.exceptions.InformationNotFoundException;
 import com.example.bookclub.model.Book;
 import com.example.bookclub.model.Quote;
@@ -97,14 +98,14 @@ public class QuoteService {
 //        throw new InformationNotFoundException("book with id " + bookId + " not found");
         Book book = bookRepository.findById(bookId).get();
         if (book == null) {
-            throw new InformationNotFoundException("category with id " + bookId +
-                    " not belongs to this user or category does not exist");
+            throw new InformationNotFoundException("book with id " + bookId +
+                    " not found");
         }
         Optional<Quote> quote = quoteRepository.findByBookId(
                 bookId).stream().filter(p -> p.getId().equals(quoteId)).findFirst();
         if (!quote.isPresent()) {
-            throw new InformationNotFoundException("recipe with id " + quote +
-                    " not belongs to this user or recipe does not exist");
+            throw new InformationNotFoundException("quote with id " + quoteId +
+                    " not found");
         }
         return quote.get();
 
@@ -132,22 +133,47 @@ public class QuoteService {
 //
     public Quote updateQuote(Long bookId, Long quoteId, Quote quoteObj){
         System.out.println("service calling updateQuote ==> ");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if(book.isPresent()){
-            for(Quote quote: book.get().getQuoteList()){
-                if (quote.getId() == quoteId){
-                    Quote updateQuote = quoteRepository.findById(quoteId).get();
-                    updateQuote.setChapter(quoteObj.getChapter());
-                    updateQuote.setQuote(quoteObj.getQuote());
-                    updateQuote.setName(quoteObj.getName());
-                    updateQuote.setPage(quoteObj.getPage());
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if(book.isPresent()){
+//            for(Quote quote: book.get().getQuoteList()){
+//                if (quote.getId() == quoteId){
+//                    Quote updateQuote = quoteRepository.findById(quoteId).get();
+//                    updateQuote.setChapter(quoteObj.getChapter());
+//                    updateQuote.setQuote(quoteObj.getQuote());
+//                    updateQuote.setName(quoteObj.getName());
+//                    updateQuote.setPage(quoteObj.getPage());
+//
+//                    return quoteRepository.save(updateQuote);
+//                }
+//                throw new InformationNotFoundException("Quote with Id " + quoteId + " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("Book with id " + bookId + " not found");
 
-                    return quoteRepository.save(updateQuote);
-                }
-                throw new InformationNotFoundException("Quote with Id " + quoteId + " not found");
-            }
+        System.out.println("service calling updateCategoryRecipe ==>");
+
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("book with id " + bookId +
+                    " not found");
         }
-        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+        Optional<Quote> quote = quoteRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(quoteId)).findFirst();
+        if (!quote.isPresent()) {
+            throw new InformationNotFoundException("quote with id " + quote +
+                    " not found");
+        }
+        Quote oldQuote = quoteRepository.findById(quoteId).get();
+        if (oldQuote != null) {
+            throw new InformationExistException("quote with id " + oldQuote + " already exists");
+        }
+        quote.get().setChapter(quoteObj.getChapter());
+        quote.get().setQuote(quoteObj.getQuote());
+        quote.get().setName(quoteObj.getName());
+        quote.get().setPage(quoteObj.getPage());
+
+        return quoteRepository.save(quote.get());
+
     }
 //
 //    //delete one quote
