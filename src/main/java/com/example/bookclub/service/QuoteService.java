@@ -160,13 +160,13 @@ public class QuoteService {
         Optional<Quote> quote = quoteRepository.findByBookId(
                 bookId).stream().filter(p -> p.getId().equals(quoteId)).findFirst();
         if (!quote.isPresent()) {
-            throw new InformationNotFoundException("quote with id " + quote +
+            throw new InformationNotFoundException("quote with id " + quoteId +
                     " not found");
         }
-        Quote oldQuote = quoteRepository.findById(quoteId).get();
-        if (oldQuote != null) {
-            throw new InformationExistException("quote with id " + oldQuote + " already exists");
-        }
+//        Quote oldQuote = quoteRepository.findById(quoteId).get();
+//        if (oldQuote != null) {
+//            throw new InformationExistException("quote with id " + oldQuote + " already exists");
+//        }
         quote.get().setChapter(quoteObj.getChapter());
         quote.get().setQuote(quoteObj.getQuote());
         quote.get().setName(quoteObj.getName());
@@ -189,21 +189,35 @@ public class QuoteService {
 //
 //    }
 
-    public Optional<Quote> deleteQuote(Long bookId, Long quoteId){
+    public void deleteQuote(Long bookId, Long quoteId){
         System.out.println("service calling deleteQuote");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if(book.isPresent()){
-            for(Quote quote: book.get().getQuoteList()){
-                if(quote.getId() == quoteId){
-                    Quote quote1 = quoteRepository.findById(quoteId).get();
-                    quoteRepository.deleteById(quoteId);
-                    return Optional.of(quote1);
-                }
-                throw new InformationNotFoundException("quote with id " + quoteId+ " not found");
-            }
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if(book.isPresent()){
+//            for(Quote quote: book.get().getQuoteList()){
+//                if(quote.getId() == quoteId){
+//                    Quote quote1 = quoteRepository.findById(quoteId).get();
+//                    quoteRepository.deleteById(quoteId);
+//                    return Optional.of(quote1);
+//                }
+//                throw new InformationNotFoundException("quote with id " + quoteId+ " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("book with Id " + bookId + " not found");
+//    }
+//
+
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("Book with id " + bookId + " not found");
         }
-        throw new InformationNotFoundException("book with Id " + bookId + " not found");
+        Optional<Quote> quote = quoteRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(quoteId)).findFirst();
+        if (!quote.isPresent()) {
+            throw new InformationNotFoundException("recipe with id " + quoteId + " not found");
+        }
+        quoteRepository.deleteById(quote.get().getId());
     }
+
 
 
 

@@ -86,9 +86,9 @@ public class QuoteController {
 //    }
 
     @DeleteMapping("/book/{bookId}/quote/{quoteId}/")
-    public Optional<Quote> deletePost(@PathVariable(value = "bookId")Long bookId,
+    public void deletePost(@PathVariable(value = "bookId")Long bookId,
                                      @PathVariable(value = "quoteId")Long quoteId){
-        return quoteService.deleteQuote(bookId, quoteId);
+        quoteService.deleteQuote(bookId, quoteId);
     }
 
 
