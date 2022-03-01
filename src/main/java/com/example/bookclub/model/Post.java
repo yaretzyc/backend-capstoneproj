@@ -43,7 +43,7 @@ public class Post {
     public Post() {
     }
 
-    //adding getters setters and construcotr
+    //adding getters setters and constructor
 
 
 

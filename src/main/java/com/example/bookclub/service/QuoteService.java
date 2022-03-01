@@ -82,19 +82,33 @@ public class QuoteService {
 //        }
 //    }
 
-    public Optional<Quote> getOneQuote(Long bookId, Long quoteId){
+    public Quote getOneQuote(Long bookId, Long quoteId){
         System.out.println("service calling getOneQuote ==> ");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if (book.isPresent()){
-            for(Quote quote: book.get().getQuoteList()){
-                if(quote.getId() == quoteId){
-                    Quote quote1 = quoteRepository.findById(quoteId).get();
-                    return Optional.of(quote1);
-                }
-                throw new InformationNotFoundException("Quote with id " + quoteId + " not found");
-            }
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if (book.isPresent()){
+//            for(Quote quote: book.get().getQuoteList()){
+//                if(quote.getId() == quoteId){
+//                    Quote quote1 = quoteRepository.findById(quoteId).get();
+//                    return Optional.of(quote1);
+//                }
+//                throw new InformationNotFoundException("Quote with id " + quoteId + " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("book with id " + bookId + " not found");
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("category with id " + bookId +
+                    " not belongs to this user or category does not exist");
         }
-        throw new InformationNotFoundException("book with id " + bookId + " not found");
+        Optional<Quote> quote = quoteRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(quoteId)).findFirst();
+        if (!quote.isPresent()) {
+            throw new InformationNotFoundException("recipe with id " + quote +
+                    " not belongs to this user or recipe does not exist");
+        }
+        return quote.get();
+
+
     }
 
 //

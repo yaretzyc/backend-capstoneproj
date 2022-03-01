@@ -57,7 +57,7 @@ public class QuoteController {
 //        return quoteService.getOneQuote(quoteId);
 //    }
     @GetMapping("/book/{bookId}/quote/{quoteId}/")
-    public Optional<Quote> getOneQuote(@PathVariable(value = "bookId")Long bookId,
+    public Quote getOneQuote(@PathVariable(value = "bookId")Long bookId,
                                        @PathVariable(value = "quoteId")Long quoteId){
         return quoteService.getOneQuote(bookId, quoteId);
     }
