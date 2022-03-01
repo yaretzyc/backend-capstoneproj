@@ -28,7 +28,7 @@ public class Post {
     @Column
     private Integer page;
 
-//    https://stackoverflow.com/questions/54840769/how-to-persist-localdate-with-jpa
+    //    https://stackoverflow.com/questions/54840769/how-to-persist-localdate-with-jpa
     @Column(columnDefinition = "DATE")
     private LocalDate date;
 

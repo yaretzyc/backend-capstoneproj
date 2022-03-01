@@ -1,5 +1,7 @@
 package com.example.bookclub.model;
 
+import com.example.bookclub.model.Post;
+import com.example.bookclub.model.Quote;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
