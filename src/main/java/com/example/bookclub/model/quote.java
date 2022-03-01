@@ -1,6 +1,8 @@
 package com.example.bookclub.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,20 @@ public class Quote {
     @Column
     private String quote;
 
+
+
+    @JsonIgnore//IN THE JSON WILL NOT SHOW CATEGORY ID AS A COLUMN
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public Quote() {
     }
