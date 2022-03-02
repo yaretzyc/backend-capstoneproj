@@ -3,7 +3,6 @@ package com.example.bookclub.service;
 import com.example.bookclub.exceptions.InformationNotFoundException;
 import com.example.bookclub.model.Book;
 import com.example.bookclub.model.Post;
-import com.example.bookclub.model.Quote;
 import com.example.bookclub.repository.BookRepository;
 import com.example.bookclub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,7 +213,7 @@ public class PostService {
         Optional<Post> post = postRepository.findByBookId(
                 bookId).stream().filter(p -> p.getId().equals(postId)).findFirst();
         if (!post.isPresent()) {
-            throw new InformationNotFoundException("recipe with id " + postId + " not found");
+            throw new InformationNotFoundException("post with id " + postId + " not found");
         }
         postRepository.deleteById(post.get().getId());
 
