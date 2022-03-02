@@ -3,6 +3,7 @@ package com.example.bookclub.service;
 import com.example.bookclub.exceptions.InformationNotFoundException;
 import com.example.bookclub.model.Book;
 import com.example.bookclub.model.Post;
+import com.example.bookclub.model.Quote;
 import com.example.bookclub.repository.BookRepository;
 import com.example.bookclub.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,19 +79,37 @@ public class PostService {
 //            throw new InformationNotFoundException("post with id of " + postId +  " not found");
 //        }
 //    }
-    public Optional<Post> getOnePost(Long bookId, Long postId){
-        System.out.println("service calling getOnePost()");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if(book.isPresent()){
-            for(Post post: book.get().getPostList()){
-                if(post.getId() == postId){
-                    Post post1 = postRepository.findById(postId).get();
-                    return Optional.of(post1);
-                }
-                throw new InformationNotFoundException("Post with id " + postId + " not found");
-            }
+    public Post getOnePost(Long bookId, Long postId){
+//        System.out.println("service calling getOnePost()");
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if(book.isPresent()){
+//            for(Post post: book.get().getPostList()){
+//                if(post.getId() == postId){
+//                    Post post1 = postRepository.findById(postId).get();
+//                    return Optional.of(post1);
+//                }
+//                throw new InformationNotFoundException("Post with id " + postId + " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("book with id " + bookId +
+                    " not found");
         }
-        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+        Optional<Post> post = postRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(postId)).findFirst();
+        if (!post.isPresent()) {
+            throw new InformationNotFoundException("post with id " + postId +
+                    " not found");
+        }
+        return post.get();
+
+
+
+
+
     }
 
 //
@@ -116,24 +135,45 @@ public class PostService {
 //    }
     public Post updatePost(Long bookId, Long postId, Post postObj){
         System.out.println("service calling updatePost");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if(book.isPresent()){
-            for(Post post: book.get().getPostList()){
-                if(post.getId() == postId){
-                    Post updatePost = postRepository.findById(postId).get();
-                    updatePost.setBody(postObj.getBody());
-                    updatePost.setDate(postObj.getDate());
-                    updatePost.setName(postObj.getName());
-                    updatePost.setPage(postObj.getPage());
-                    updatePost.setDateTime(postObj.getDateTime());
-                    updatePost.setTitle(postObj.getTitle());
-
-                    return postRepository.save(updatePost);
-                }
-                throw new InformationNotFoundException("Post with id " + postId + " not found");
-            }
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if(book.isPresent()){
+//            for(Post post: book.get().getPostList()){
+//                if(post.getId() == postId){
+//                    Post updatePost = postRepository.findById(postId).get();
+//                    updatePost.setBody(postObj.getBody());
+//                    updatePost.setDate(postObj.getDate());
+//                    updatePost.setName(postObj.getName());
+//                    updatePost.setPage(postObj.getPage());
+//                    updatePost.setDateTime(postObj.getDateTime());
+//                    updatePost.setTitle(postObj.getTitle());
+//
+//                    return postRepository.save(updatePost);
+//                }
+//                throw new InformationNotFoundException("Post with id " + postId + " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("book with id " + bookId +
+                    " not found");
         }
-        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+        Optional<Post> post = postRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(postId)).findFirst();
+        if (!post.isPresent()) {
+            throw new InformationNotFoundException("post with id " + postId +
+                    " not found");
+        }
+        post.get().setBody(postObj.getBody());
+        post.get().setDate(postObj.getDate());
+        post.get().setName(postObj.getName());
+        post.get().setPage(postObj.getPage());
+        post.get().setDateTime(postObj.getDateTime());
+        post.get().setTitle(postObj.getTitle());
+
+        return postRepository.save(post.get());
+
+
     }
 
 
@@ -152,20 +192,34 @@ public class PostService {
 //
 //    }
 
-    public Optional<Post> deletePost(Long bookId, Long postId){
+    public void deletePost(Long bookId, Long postId){
         System.out.println("service calling deletePost");
-        Optional<Book> book = bookRepository.findById(bookId);
-        if(book.isPresent()){
-            for(Post post: book.get().getPostList()){
-                if(post.getId() == postId){
-                    Post post1 = postRepository.findById(postId).get();
-                    postRepository.deleteById(postId);
-                    return Optional.of(post1);
-                }
-                throw new InformationNotFoundException("Post with id " + postId + " not found");
-            }
+//        Optional<Book> book = bookRepository.findById(bookId);
+//        if(book.isPresent()){
+//            for(Post post: book.get().getPostList()){
+//                if(post.getId() == postId){
+//                    Post post1 = postRepository.findById(postId).get();
+//                    postRepository.deleteById(postId);
+//                    return Optional.of(post1);
+//                }
+//                throw new InformationNotFoundException("Post with id " + postId + " not found");
+//            }
+//        }
+//        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+
+        Book book = bookRepository.findById(bookId).get();
+        if (book == null) {
+            throw new InformationNotFoundException("Book with id " + bookId + " not found");
         }
-        throw new InformationNotFoundException("Book with id " + bookId + " not found");
+        Optional<Post> post = postRepository.findByBookId(
+                bookId).stream().filter(p -> p.getId().equals(postId)).findFirst();
+        if (!post.isPresent()) {
+            throw new InformationNotFoundException("recipe with id " + postId + " not found");
+        }
+        postRepository.deleteById(post.get().getId());
+
+
+
     }
 
 

@@ -58,7 +58,7 @@ public class PostController {
 //        return postService.getOnePost(postId);
 //    }
     @GetMapping("/book/{bookId}/post/{postId}/")
-    public Optional<Post> getOnePost(@PathVariable(value = "bookId")Long bookId,
+    public Post getOnePost(@PathVariable(value = "bookId")Long bookId,
                                      @PathVariable(value = "postId")Long postId){
         return postService.getOnePost(bookId, postId);
     }
@@ -87,9 +87,9 @@ public class PostController {
 //    }
 
     @DeleteMapping("/book/{bookId}/post/{postId}/")
-    public Optional<Post> deletePost(@PathVariable(value = "bookId")Long bookId,
+    public void deletePost(@PathVariable(value = "bookId")Long bookId,
                                      @PathVariable(value = "postId")Long postId){
-        return postService.deletePost(bookId, postId);
+        postService.deletePost(bookId, postId);
     }
 
 }
