@@ -34,6 +34,10 @@
    
 ### Visual Diagram (Intellij Idea)
 <p align="center"><img alt="visual diagram from intellij idea" height="750" src="planning/visualDiagram.png"/>
+   
+### Visual Diagram (Intellij Idea) Revised
+<p align="center"><img alt="visual diagram from intellij idea" height="750" src="planning/revised.png"/>
+
 
 
 ## DEPENDENCIES POM.XML
