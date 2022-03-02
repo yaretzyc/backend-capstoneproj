@@ -9,7 +9,6 @@
 - [Dependencies](#DEPENDENCIES-POM.XML)
 - [Endpoints](#ENDPOINTS)
 - [Technologies](#TECHNOLOGIES)
-- [Installation](#INSTALLATION)
 - [Project Challenges](#CHALLENGES)
 - [Future Improvements](#FUTURE-IMPROVEMENTS)
 
@@ -113,8 +112,9 @@
    
    
 
-## INSTALLATION
 
 ## CHALLENGES
-
+Refactored the code a few times and every step was a challenge. What I should have done is more planning in the beginning because I am working with a frontend and backend. I refactored code to make a connection between two models twice (books and posts && books and quotes). Heruko deployment was successful and able to make api calls in postman using the new link but isn't rendering in the frontend.
+   
 ## FUTURE IMPROVEMENTS
+   Create a user login so that site is only for one user instead of the initial project idea of having an open website for many users. I was aiming for a responive web design so making some improvements in spacing between tags.
